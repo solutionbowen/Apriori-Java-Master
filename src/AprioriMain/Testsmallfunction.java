@@ -1,3 +1,8 @@
+/**
+*作者: Bo-Wen Duan (Paul)
+*聯絡方式: bowenduan618@gmail.com
+*修改日期: 2016 / 1 / 10
+*/
 package AprioriMain;
 
 import java.util.Arrays;
