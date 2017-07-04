@@ -1,24 +1,29 @@
+/**
+*ä½œè€…: Bo-Wen Duan (Paul)
+*è¯çµ¡æ–¹å¼: bowenduan618@gmail.com
+*ä¿®æ”¹æ—¥æœŸ: 2016 / 1 / 10
+*/
 /*
-1.°ò¥»·§©À¡G
-ÃöÁp³W«h A->B ªº¤ä«ù«× support=P(AB)¡A«üªº¬O¨Æ¥ó A©M¨Æ¥ó B¦P®Éµo¥Íªº·§²v¡C
-«H¿à«×confidence=P(B|A)=P(AB)/P(A), «üªº¬Oµo¥Í¨Æ¥ó Aªº°òÂ¦¤Wµo¥Í¨Æ¥ó Bªº·§²v¡C
-¦P®Éº¡¨¬³Ì¤p¤ä«ù«×ªùÂe­È©M³Ì¤p«H¿à«×ªùÂe­Èªº³W«hºÙ¬°±j³W«h ¡C
-¦pªG¨Æ¥ó A¤¤¥]§t k­Ó¤¸¯À(¶µ¥Ø)¡A¨º»òºÙ³o­Ó¨Æ¥ó A¬° k-¶µ¥Ø¶°¡A ¨Ã¥B¨Æ¥ó Aº¡¨¬³Ì¤p¤ä«ù«×ªùÂe­Èªº¨Æ¥óºÙ¬°°ªÀWk-¶µ¶° ¡C 
-2.±´°É¹Lµ{¡G
-²Ä¤@¡A§ä¥X©Ò¦³ªº°ªÀW¶µ¥Ø¶°¡F
-²Ä¤G¡A¥Ñ°ªÀW¶µ¥Ø¶°²£¥Í±j³W«h¡C
-Aprioriºtºâªk±Ä¥Î"¦X¨Ö¨BÆJ"©M"­pºâ¤ä«ù«×¤§«e§PÂ_¥»¨­ªº¤l¶°¦X¬O§_°ªÀW"¨âºØ¤è¦¡¨Ó§ä¥X©Ò¦³ªº°ªÀW¶µ¥Ø¶°¡C
+1.åŸºæœ¬æ¦‚å¿µï¼š
+é—œè¯è¦å‰‡ A->B çš„æ”¯æŒåº¦ support=P(AB)ï¼ŒæŒ‡çš„æ˜¯äº‹ä»¶ Aå’Œäº‹ä»¶ BåŒæ™‚ç™¼ç”Ÿçš„æ¦‚ç‡ã€‚
+ä¿¡è³´åº¦confidence=P(B|A)=P(AB)/P(A), æŒ‡çš„æ˜¯ç™¼ç”Ÿäº‹ä»¶ Açš„åŸºç¤ä¸Šç™¼ç”Ÿäº‹ä»¶ Bçš„æ¦‚ç‡ã€‚
+åŒæ™‚æ»¿è¶³æœ€å°æ”¯æŒåº¦é–€æª»å€¼å’Œæœ€å°ä¿¡è³´åº¦é–€æª»å€¼çš„è¦å‰‡ç¨±ç‚ºå¼·è¦å‰‡ ã€‚
+å¦‚æœäº‹ä»¶ Aä¸­åŒ…å« kå€‹å…ƒç´ (é …ç›®)ï¼Œé‚£éº¼ç¨±é€™å€‹äº‹ä»¶ Aç‚º k-é …ç›®é›†ï¼Œ ä¸¦ä¸”äº‹ä»¶ Aæ»¿è¶³æœ€å°æ”¯æŒåº¦é–€æª»å€¼çš„äº‹ä»¶ç¨±ç‚ºé«˜é »k-é …é›† ã€‚ 
+2.æ¢å‹˜éç¨‹ï¼š
+ç¬¬ä¸€ï¼Œæ‰¾å‡ºæ‰€æœ‰çš„é«˜é »é …ç›®é›†ï¼›
+ç¬¬äºŒï¼Œç”±é«˜é »é …ç›®é›†ç”¢ç”Ÿå¼·è¦å‰‡ã€‚
+Aprioriæ¼”ç®—æ³•æ¡ç”¨"åˆä½µæ­¥é©Ÿ"å’Œ"è¨ˆç®—æ”¯æŒåº¦ä¹‹å‰åˆ¤æ–·æœ¬èº«çš„å­é›†åˆæ˜¯å¦é«˜é »"å…©ç¨®æ–¹å¼ä¾†æ‰¾å‡ºæ‰€æœ‰çš„é«˜é »é …ç›®é›†ã€‚
 */
 package AprioriMain;
 import java.io.*;
 import java.util.*;
 public class GenerateIargeItemSet {
-	private final static ArrayList<String> transactions = new ArrayList<>(); //±N©Ò¦³¥æ©ö¥ÎArrayList¨Ó¦s
-	private final static int support = 2000; //¤ä«ù­Ó¼Æ³]©w
-	private final static double confidence = 0.7; //«H¿à«×³]©w
+	private final static ArrayList<String> transactions = new ArrayList<>(); //å°‡æ‰€æœ‰äº¤æ˜“ç”¨ArrayListä¾†å­˜
+	private final static int support = 2000; //æ”¯æŒå€‹æ•¸è¨­å®š
+	private final static double confidence = 0.7; //ä¿¡è³´åº¦è¨­å®š
 	private final static String InputFileName = "retail.txt";
 	private final static String OutputFileName = "MiningResult.txt";
-	public static void main(String[] args) throws IOException{    //¥D¨ç¦¡
+	public static void main(String[] args) throws IOException{    //ä¸»å‡½å¼
 		 long begin = System.currentTimeMillis();
 		 FileReader fr = new FileReader(InputFileName); 
 		 FileWriter fw = new FileWriter(OutputFileName);
@@ -26,12 +31,12 @@ public class GenerateIargeItemSet {
          BufferedWriter bw = new BufferedWriter(fw);
          String line;
          int transactionscount = 0;
-         while((line = br.readLine())!=null){        //±N­ì©l¥æ©ö¸ê®Æ³v¦æÅª¶i¨Ó
+         while((line = br.readLine())!=null){        //å°‡åŸå§‹äº¤æ˜“è³‡æ–™é€è¡Œè®€é€²ä¾†
         	 transactions.add(line);
-        	 transactionscount++;                    //ÅªÀÉ¦P®É¨C¤@¦æ°O¼Æ¤@¦¸(²Î­p¥æ©öµ§¼Æ)
+        	 transactionscount++;                    //è®€æª”åŒæ™‚æ¯ä¸€è¡Œè¨˜æ•¸ä¸€æ¬¡(çµ±è¨ˆäº¤æ˜“ç­†æ•¸)
          }
-         bw.write("¤ä«ù­Ó¼Æ¬°:"); bw.write(String.format("%d",support));  bw.newLine();
-         bw.write("Á`¦@¦³"); bw.write(String.format("%d",transactionscount)); bw.write("µ§¥æ©ö"); bw.newLine();
+         bw.write("æ”¯æŒå€‹æ•¸ç‚º:"); bw.write(String.format("%d",support));  bw.newLine();
+         bw.write("ç¸½å…±æœ‰"); bw.write(String.format("%d",transactionscount)); bw.write("ç­†äº¤æ˜“"); bw.newLine();
          HashMap<String,Integer> frequentMap = getfrequentItemSet();
          List<Map.Entry<String, Integer>> list_Tran =
                  new ArrayList<Map.Entry<String, Integer>>(frequentMap.entrySet());
@@ -46,39 +51,39 @@ public class GenerateIargeItemSet {
             	 return entry1.getKey().compareTo(entry2.getKey());
              }
          });
-         bw.write("---------------- °ªÀW¶µ¥Ø¶° "+"------------------");
+         bw.write("---------------- é«˜é »é …ç›®é›† "+"------------------");
          bw.newLine();
          for (Map.Entry<String, Integer> entry:list_Tran) {
-             bw.write("¶µ¥Ø¶°:" + entry.getKey() + "¤ä«ù­Ó¼Æ" + entry.getValue());
+             bw.write("é …ç›®é›†:" + entry.getKey() + "æ”¯æŒå€‹æ•¸" + entry.getValue());
              bw.newLine();
          }
 	  long over = System.currentTimeMillis();
 	  long millisecond = (over - begin) % 1000;
 	  int second = (int)(over - begin)/1000 % 60;
 	  int minute = (int)(over - begin)/1000 / 60;
-	  bw.write("°õ¦æ®É¶¡¬°¡G "+ minute + "¤À" + second + "¬í" + millisecond + "²@¬í" );
+	  bw.write("åŸ·è¡Œæ™‚é–“ç‚ºï¼š "+ minute + "åˆ†" + second + "ç§’" + millisecond + "æ¯«ç§’" );
 	  br.close();
 	  bw.close();
-	  sop("Miningµ²§ô¡A©Ò±´°É¥X¨Óªºµ²ªG¤w¼g¤J¦Ü"+ OutputFileName +"¸Ì");
+	  sop("MiningçµæŸï¼Œæ‰€æ¢å‹˜å‡ºä¾†çš„çµæœå·²å¯«å…¥è‡³"+ OutputFileName +"è£¡");
 	 }
 	/*
-	Function ¦WºÙ: getfrequent1Item()
-	Function ¿é¥X: ¦^¶Ç°ªÀW1-¶µ¥Ø¶°¡C
-	Function °õ¦æ¹Lµ{: 1.±N¤w¸g¦s¤Jtransactions¸Ì­±©Ò¦³ªº¥æ©ö¡A¤@­Ó¤@­Ó(¤]´N¬O¤@¦æ¤@¦æªº¥æ©ö)¡A«Å§i¤@­ÓString«¬ºAªºtrans¨Ó±µ¦¬¡C
-	                2.¦A¨Ó±Ntrans(¤@¦æ¥æ©ö)¶i¦æ¤Á³Î(¤Á¦¨³æ¤@ªº¶µ¥Ø)¡C
-	                3.¤Á³Î§¹¤§«á«Å§i¤@­Ósfrequent1ItemMap¡AHashMapªº¹êÅé±N³æ¤@¶µ¥Ø·í¦¨key¡Avalue·í§@³o­Ó¶µ¥Øªº¤ä«ù­Ó¼Æ¡C
-	                4.§Q¥Î«Å§i¤@­ÓIntegerªºcount(value)¨Ó§@¬°§PÂ_¡A­Y¬°null¡Acount³]¬°1¡A§_«h©Ò¨ú¥Xªºcount¦A¥[1¡C
-	                5.§Î¦¨³Ì«áªºsfrequent1ItemMap(¬Û²§ªº³æ¤@¶µ¥Ø,¶µ¥Øªº¤ä«ù­Ó¼Æ)
-	                6.«Å§iSet<String>«¬ºAªºkeySet±Nsfrequent1ItemMapªº©Ò¦³key¨ú¥X¨Ó¡C
-	                7.§Q¥Îfor-each°j°é«Å§i¤@­ÓString«¬ºAkey±NkeySet¨ú¶i¥h¡C
-	                8.§Q¥Îcount&sfrequent1ItemMap.get(key)¥H¤Îsupport¡Aif°j°é¨Ó§PÂ_¬O§_°ªÀW¡A¦P®É¦C¥X©Ò¦³­Ô¿ï1-¶µ¥Ø¶°¡C
-	                9.­Y¬O°ªÀW±N¦¹(key,value)put¶i¥t¥~«Å§iªºHashMap¹êÅérfrequent1ItemMap¡C
-	               10.«Å§i¤@­ÓSet<String>«¬ºAªºkeySet1±Nrfrequent1ItemMapªº©Ò¦³key¨ú¥X¨Ó¡C
-	               11.³Ì«á§Q¥Îfor°j°é¨Ì§Ç¦L¥X©Ò¦³°ªÀW1-¶µ¥Ø¶°
+	Function åç¨±: getfrequent1Item()
+	Function è¼¸å‡º: å›å‚³é«˜é »1-é …ç›®é›†ã€‚
+	Function åŸ·è¡Œéç¨‹: 1.å°‡å·²ç¶“å­˜å…¥transactionsè£¡é¢æ‰€æœ‰çš„äº¤æ˜“ï¼Œä¸€å€‹ä¸€å€‹(ä¹Ÿå°±æ˜¯ä¸€è¡Œä¸€è¡Œçš„äº¤æ˜“)ï¼Œå®£å‘Šä¸€å€‹Stringå‹æ…‹çš„transä¾†æ¥æ”¶ã€‚
+	                2.å†ä¾†å°‡trans(ä¸€è¡Œäº¤æ˜“)é€²è¡Œåˆ‡å‰²(åˆ‡æˆå–®ä¸€çš„é …ç›®)ã€‚
+	                3.åˆ‡å‰²å®Œä¹‹å¾Œå®£å‘Šä¸€å€‹sfrequent1ItemMapï¼ŒHashMapçš„å¯¦é«”å°‡å–®ä¸€é …ç›®ç•¶æˆkeyï¼Œvalueç•¶ä½œé€™å€‹é …ç›®çš„æ”¯æŒå€‹æ•¸ã€‚
+	                4.åˆ©ç”¨å®£å‘Šä¸€å€‹Integerçš„count(value)ä¾†ä½œç‚ºåˆ¤æ–·ï¼Œè‹¥ç‚ºnullï¼Œcountè¨­ç‚º1ï¼Œå¦å‰‡æ‰€å–å‡ºçš„countå†åŠ 1ã€‚
+	                5.å½¢æˆæœ€å¾Œçš„sfrequent1ItemMap(ç›¸ç•°çš„å–®ä¸€é …ç›®,é …ç›®çš„æ”¯æŒå€‹æ•¸)
+	                6.å®£å‘ŠSet<String>å‹æ…‹çš„keySetå°‡sfrequent1ItemMapçš„æ‰€æœ‰keyå–å‡ºä¾†ã€‚
+	                7.åˆ©ç”¨for-eachè¿´åœˆå®£å‘Šä¸€å€‹Stringå‹æ…‹keyå°‡keySetå–é€²å»ã€‚
+	                8.åˆ©ç”¨count&sfrequent1ItemMap.get(key)ä»¥åŠsupportï¼Œifè¿´åœˆä¾†åˆ¤æ–·æ˜¯å¦é«˜é »ï¼ŒåŒæ™‚åˆ—å‡ºæ‰€æœ‰å€™é¸1-é …ç›®é›†ã€‚
+	                9.è‹¥æ˜¯é«˜é »å°‡æ­¤(key,value)puté€²å¦å¤–å®£å‘Šçš„HashMapå¯¦é«”rfrequent1ItemMapã€‚
+	               10.å®£å‘Šä¸€å€‹Set<String>å‹æ…‹çš„keySet1å°‡rfrequent1ItemMapçš„æ‰€æœ‰keyå–å‡ºä¾†ã€‚
+	               11.æœ€å¾Œåˆ©ç”¨forè¿´åœˆä¾åºå°å‡ºæ‰€æœ‰é«˜é »1-é …ç›®é›†
 	*/
 	public static HashMap<String,Integer> getfrequent1Item(){    
-		 HashMap<String,Integer> sfrequent1ItemMap = new HashMap<>(); //­Ô¿ï1-¶µ¥Ø¶°
-		 HashMap<String,Integer> rfrequent1ItemMap = new HashMap<>(); //°ªÀW1-¶µ¥Ø¶°
+		 HashMap<String,Integer> sfrequent1ItemMap = new HashMap<>(); //å€™é¸1-é …ç›®é›†
+		 HashMap<String,Integer> rfrequent1ItemMap = new HashMap<>(); //é«˜é »1-é …ç›®é›†
 		 for(int i = 0 ; i < transactions.size() ; i++){
 			 String trans  = transactions.get(i);
 			 String[] items = trans.split(" ");
@@ -102,24 +107,24 @@ public class GenerateIargeItemSet {
         return rfrequent1ItemMap;
      }
 	/*
-	Function ¦WºÙ: getfrequentItemSet()
-	Function ¿é¥X: ¦^¶Ç©Ò¦³°ªÀWk-¶µ¥Ø¶°(k >= 2)
-	Function °õ¦æ¹Lµ{:
+	Function åç¨±: getfrequentItemSet()
+	Function è¼¸å‡º: å›å‚³æ‰€æœ‰é«˜é »k-é …ç›®é›†(k >= 2)
+	Function åŸ·è¡Œéç¨‹:
 	*/
 	public static HashMap<String,Integer> getfrequentItemSet(){
-	     HashMap<String,Integer> frequentSetMap = new HashMap<>();  //©Ò¦³ªº°ªÀW¶µ¥Ø¶°
+	     HashMap<String,Integer> frequentSetMap = new HashMap<>();  //æ‰€æœ‰çš„é«˜é »é …ç›®é›†
 	     HashMap<String,Integer> frequentkitemMap = new HashMap<>();
 	     frequentSetMap.putAll(getfrequent1Item());
 	     frequentkitemMap.putAll(getfrequent1Item());
 	     while(frequentkitemMap != null && frequentkitemMap.size() != 0){
 	    	HashMap<String,Integer> candidateSet = getCandidateItemSet(frequentkitemMap);
 	        Set<String> csKeySet = candidateSet.keySet();
-	        //¹ï­Ô¿ï¥Ø¶°¶µ¶i¦æcount²Ö¥[
+	        //å°å€™é¸ç›®é›†é …é€²è¡Œcountç´¯åŠ 
 	        for(String trans:transactions){
 	        	String[] items = trans.split(" ");
 	        	List<String> list = Arrays.asList(items);
 	        	for(String candidate:csKeySet){
-	                boolean flag=true;  //¥Î¨Ó§PÂ_¥æ©ö¤¤¬O§_¥X²{¸Ó­Ô¿ï¶µ¥Ø¶°¡A¦pªG¥X²{¡Acount¥[ 1
+	                boolean flag=true;  //ç”¨ä¾†åˆ¤æ–·äº¤æ˜“ä¸­æ˜¯å¦å‡ºç¾è©²å€™é¸é …ç›®é›†ï¼Œå¦‚æœå‡ºç¾ï¼ŒcountåŠ  1
 	                String[] candidateItems = candidate.split(" ");
 	                for(String candidateItem:candidateItems){
 	                      if(list.indexOf(candidateItem) == -1){
@@ -133,7 +138,7 @@ public class GenerateIargeItemSet {
 	                }
 	          }
 	        }
-	       //±q­Ô¿ï¶µ¥Ø¶°¤¤§ä¨ì²Å¦X¤ä«ù«×ªº°ªÀW¶µ¥Ø¶°
+	       //å¾å€™é¸é …ç›®é›†ä¸­æ‰¾åˆ°ç¬¦åˆæ”¯æŒåº¦çš„é«˜é »é …ç›®é›†
 	       frequentkitemMap.clear();
 	       for(String candidate:csKeySet){
 	           Integer count = candidateSet.get(candidate);
@@ -141,15 +146,15 @@ public class GenerateIargeItemSet {
 	        	   frequentkitemMap.put(candidate, count);
 	           }
 	        }
-	        //¦X¨Ö©Ò¦³°ªÀW¶µ¥Ø¶°
+	        //åˆä½µæ‰€æœ‰é«˜é »é …ç›®é›†
 	       frequentSetMap.putAll(frequentkitemMap);
 	    }
 	    return frequentSetMap;
 	 }
 	/*
-	Function ¦WºÙ: getCandidateItemSet(Map<String,Integer> frequentkitemMap)
-	Function ¿é¥X: ¦^¶Ç©Ò¦³­Ô¿ïk-¶µ¥Ø¶°(k >= 2)
-	Function °õ¦æ¹Lµ{: 
+	Function åç¨±: getCandidateItemSet(Map<String,Integer> frequentkitemMap)
+	Function è¼¸å‡º: å›å‚³æ‰€æœ‰å€™é¸k-é …ç›®é›†(k >= 2)
+	Function åŸ·è¡Œéç¨‹: 
 	*/
 	private static HashMap<String,Integer> getCandidateItemSet(Map<String,Integer> frequentkitemMap){
 		 HashMap<String,Integer> candidateSet = new HashMap<String,Integer>();
@@ -157,30 +162,30 @@ public class GenerateIargeItemSet {
          Set<String> kitemSet2 = frequentkitemMap.keySet();
          for(String kitem1:kitemSet1){
            for(String kitem2:kitemSet2){
-                //¦X¨Ö¨BÆJ
-                String[] tmp1 = kitem1.split(" ");   //¤Á¥X¨Ó·|¬O¤@­Ó­Ó1-°ªÀW¶µ¥Ø¶°(String«¬ºA)
-                String[] tmp2 = kitem2.split(" ");   //¤Á¥X¨Ó·|¬O¤@­Ó­Ó1-°ªÀW¶µ¥Ø¶°(String«¬ºA)
+                //åˆä½µæ­¥é©Ÿ
+                String[] tmp1 = kitem1.split(" ");   //åˆ‡å‡ºä¾†æœƒæ˜¯ä¸€å€‹å€‹1-é«˜é »é …ç›®é›†(Stringå‹æ…‹)
+                String[] tmp2 = kitem2.split(" ");   //åˆ‡å‡ºä¾†æœƒæ˜¯ä¸€å€‹å€‹1-é«˜é »é …ç›®é›†(Stringå‹æ…‹)
                 String c = "";
-                   if(tmp1.length == 1){             //¯x°}¤¤¥u¦³³æ¤@­Ó¶µ¥Ø¶°(¯x°}tmp1·|¸ò¯x°}tmp2ªø«×¤@¼Ë)
-                          if(tmp1[0].compareTo(tmp2[0]) < 0){       //¦r¦ê¤ñ¹ï(¨Ì·Ó¼Æ¦r©M­^¤å¦r¥À±Æ§Ç¤ñ¹ï)
+                   if(tmp1.length == 1){             //çŸ©é™£ä¸­åªæœ‰å–®ä¸€å€‹é …ç›®é›†(çŸ©é™£tmp1æœƒè·ŸçŸ©é™£tmp2é•·åº¦ä¸€æ¨£)
+                          if(tmp1[0].compareTo(tmp2[0]) < 0){       //å­—ä¸²æ¯”å°(ä¾ç…§æ•¸å­—å’Œè‹±æ–‡å­—æ¯æ’åºæ¯”å°)
                                 c = tmp1[0] + " " + tmp2[0] +" ";
                           }
                    }else{
                           boolean flag = true;
-                          for(int i = 0 ; i < tmp1.length-1 ; i++){  //tmp1©Mtemp2¯x°}ªºindex±q0~length-2¤À§O¤ñ¹ï¬O§_¤@¼Ë
-                             if(!tmp1[i].equals(tmp2[i])){           //¤¤¶¡¥X²{¤£¦P®Éflag§ï¬°false¡A¸õ¥X°j°é
+                          for(int i = 0 ; i < tmp1.length-1 ; i++){  //tmp1å’Œtemp2çŸ©é™£çš„indexå¾0~length-2åˆ†åˆ¥æ¯”å°æ˜¯å¦ä¸€æ¨£
+                             if(!tmp1[i].equals(tmp2[i])){           //ä¸­é–“å‡ºç¾ä¸åŒæ™‚flagæ”¹ç‚ºfalseï¼Œè·³å‡ºè¿´åœˆ
                                   flag = false;
                                   break;
                              }
                           }
-                          if(flag && (tmp1[tmp1.length-1].compareTo(tmp2[tmp2.length-1]) < 0)){ //¤ñtmp1©Mtemp2¯x°}¦U¦Û³Ì«á¤@­Óªº¤¸¯À(String«¬ºA)
+                          if(flag && (tmp1[tmp1.length-1].compareTo(tmp2[tmp2.length-1]) < 0)){ //æ¯”tmp1å’Œtemp2çŸ©é™£å„è‡ªæœ€å¾Œä¸€å€‹çš„å…ƒç´ (Stringå‹æ…‹)
                             c = kitem1 + tmp2[tmp2.length-1]+" ";
                           }
                     }
-                //­pºâ¤ä«ù«×¤§«e§PÂ_¥»¨­ªº¤l¶°¦X¬O§_°ªÀW
+                //è¨ˆç®—æ”¯æŒåº¦ä¹‹å‰åˆ¤æ–·æœ¬èº«çš„å­é›†åˆæ˜¯å¦é«˜é »
                 boolean hasInfrequentSubSet = false;
                    if (!c.equals("")) {
-                       String[] tmpC = c.split(" ");        //¹ïString«¬ºAc(­Ô¿ï¶µ¥Ø¶°)¶i¦æ¤Á³Î
+                       String[] tmpC = c.split(" ");        //å°Stringå‹æ…‹c(å€™é¸é …ç›®é›†)é€²è¡Œåˆ‡å‰²
                        for (int i = 0 ; i < tmpC.length ; i++) {
                            String SubSetC = "";
                            for (int j = 0 ; j < tmpC.length ; j++) {
@@ -188,7 +193,7 @@ public class GenerateIargeItemSet {
                                  SubSetC = SubSetC + tmpC[j] + " ";
                                }
                            }
-                           if (frequentkitemMap.get(SubSetC) == null) {   //¥Nªí­Ô¿ï¶µ¥Ø¶°ªº¤l¶µ¥Ø¶°¥X²{«D°ªÀWªº±¡ªp
+                           if (frequentkitemMap.get(SubSetC) == null) {   //ä»£è¡¨å€™é¸é …ç›®é›†çš„å­é …ç›®é›†å‡ºç¾éé«˜é »çš„æƒ…æ³
                                hasInfrequentSubSet = true;
                                break;
                            }
@@ -203,7 +208,7 @@ public class GenerateIargeItemSet {
          }
         return candidateSet;
     }
-	public static void sop(Object obj){  //¦C¦Lªºfunction
+	public static void sop(Object obj){  //åˆ—å°çš„function
 	    	System.out.println(obj);
 	 }
 }
